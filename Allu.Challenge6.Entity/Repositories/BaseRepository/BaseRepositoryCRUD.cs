@@ -1,11 +1,6 @@
 ﻿using Allu.Challenge6.Data.Context;
 using Allu.Challenge6.Domain.Repositories.BaseRpository;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Allu.Challenge6.Entity.Repositories.BaseRepository
 {

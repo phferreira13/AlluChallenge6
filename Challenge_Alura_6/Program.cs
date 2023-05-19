@@ -1,4 +1,6 @@
+using Allu.Challenge6.Business.UseCases.Tutores.Add;
 using Allu.Challenge6.Entity.Ioc;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddValidatorsFromAssemblyContaining(typeof(TutorAddCommandValidator));
 builder.Services.AddSwaggerGen();
 builder.Services.AddEntityConfiguration(builder.Configuration);
+builder.Services.AddMediatR(c => c.RegisterServicesFromAssembly(typeof(TutorAddHandler).Assembly));                
 
 var app = builder.Build();
 

@@ -1,6 +1,5 @@
 ﻿using Allu.Challenge6.Domain.Repositories;
 using Allu.Challenge6.Entity.Repositories;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Allu.Challenge6.Entity.Ioc
