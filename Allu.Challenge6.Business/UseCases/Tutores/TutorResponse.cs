@@ -1,11 +1,4 @@
-﻿using Allu.Challenge6.Business.UseCases.Tutores.Add;
-using Allu.Challenge6.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Allu.Challenge6.Data.Entities;
 
 namespace Allu.Challenge6.Business.UseCases.Tutores
 {

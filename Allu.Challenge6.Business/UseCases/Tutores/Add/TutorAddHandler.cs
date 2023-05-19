@@ -3,12 +3,10 @@ using MediatR;
 
 namespace Allu.Challenge6.Business.UseCases.Tutores.Add
 {
-    public class TutorAddHandler : IRequestHandler<TutorAddCommand, TutorResponse>
+    public class TutorAddHandler : TutorBaseHandler, IRequestHandler<TutorAddCommand, TutorResponse>
     {
-        private readonly ITutorRepository _repository;
-        public TutorAddHandler(ITutorRepository repository)
+        public TutorAddHandler(ITutorRepository repository) : base(repository)
         {
-            _repository = repository;
         }
 
         public async Task<TutorResponse> Handle(TutorAddCommand request, CancellationToken cancellationToken)

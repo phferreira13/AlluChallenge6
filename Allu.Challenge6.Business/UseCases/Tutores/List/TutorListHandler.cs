@@ -3,12 +3,10 @@ using MediatR;
 
 namespace Allu.Challenge6.Business.UseCases.Tutores.List
 {
-    public class TutorListHandler : IRequestHandler<TutorListQuery, TutorListResponse>
+    public class TutorListHandler : TutorBaseHandler, IRequestHandler<TutorListQuery, TutorListResponse>
     {
-        private ITutorRepository _repository;
-        public TutorListHandler(ITutorRepository repository)
+        public TutorListHandler(ITutorRepository repository) : base(repository)
         {
-            _repository = repository;
         }
 
         public async Task<TutorListResponse> Handle(TutorListQuery request, CancellationToken cancellationToken)
