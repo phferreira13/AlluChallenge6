@@ -6,8 +6,6 @@ namespace Allu.Challenge6.Business.UseCases.Tutores.Update
         public TutorUpdateCommandValidator()
         {
             RuleFor(command => command.Nome).NotEmpty();
-            RuleFor(command => command.Email).NotEmpty().EmailAddress();
-            RuleFor(command => command.Senha).NotEmpty().MinimumLength(6);
         }
     }
 }

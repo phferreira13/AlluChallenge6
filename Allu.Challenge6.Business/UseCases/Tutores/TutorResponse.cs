@@ -8,6 +8,10 @@ namespace Allu.Challenge6.Business.UseCases.Tutores
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Senha { get; set; }
+        public string ProfilePicture { get; set; }
+        public string Telefone { get; set; }
+        public string Cidade { get; set; }
+        public string Sobre { get; set; }
 
         public static implicit operator TutorResponse(Tutor? tutor)
         {
@@ -18,6 +22,10 @@ namespace Allu.Challenge6.Business.UseCases.Tutores
                 Nome = tutor.Nome,
                 Email = tutor.Email,
                 Senha = tutor.Senha,
+                ProfilePicture = tutor.ProfilePicture,
+                Telefone = tutor.Telefone,
+                Cidade = tutor.Cidade,
+                Sobre = tutor.Sobre,
             };
         }
     }

@@ -2,6 +2,7 @@
 using Allu.Challenge6.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Allu.Challenge6.Data.Migrations
 {
     [DbContext(typeof(Challenge6Context))]
-    partial class Challenge6ContextModelSnapshot : ModelSnapshot
+    [Migration("20230520010437_Update_Tutor_ChangeProfilePicture")]
+    partial class Update_Tutor_ChangeProfilePicture
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,4 +1,5 @@
-﻿using Allu.Challenge6.Domain.Repositories;
+﻿using Allu.Challenge6.Data.Entities;
+using Allu.Challenge6.Domain.Repositories;
 using MediatR;
 
 namespace Allu.Challenge6.Business.UseCases.Tutores.Update
@@ -13,9 +14,11 @@ namespace Allu.Challenge6.Business.UseCases.Tutores.Update
         {
             var tutorToUpdate = await _repository.GetByIdAsync(request.Id);
             if (tutorToUpdate == null) return null;
-            tutorToUpdate.Senha = request.Senha;
-            tutorToUpdate.Email = request.Email;
             tutorToUpdate.Nome = request.Nome;
+            tutorToUpdate.ProfilePicture = request.ProfilePicture;
+            tutorToUpdate.Telefone = request.Telefone;
+            tutorToUpdate.Cidade = request.Cidade;
+            tutorToUpdate.Sobre = request.Sobre;
             await _repository.UpdateAsync(tutorToUpdate);
             return tutorToUpdate;
         }

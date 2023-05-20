@@ -1,4 +1,6 @@
-﻿using Allu.Challenge6.Business.UseCases.Tutores;
+﻿using Allu.Challege6.Shared.Constants;
+using Allu.Challege6.Shared.Services;
+using Allu.Challenge6.Business.UseCases.Tutores;
 using Allu.Challenge6.Business.UseCases.Tutores.Add;
 using Allu.Challenge6.Business.UseCases.Tutores.Delete;
 using Allu.Challenge6.Business.UseCases.Tutores.GetById;
@@ -6,11 +8,12 @@ using Allu.Challenge6.Business.UseCases.Tutores.List;
 using Allu.Challenge6.Business.UseCases.Tutores.Update;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Allu.Challenge6.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TutorController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -52,16 +55,40 @@ namespace Allu.Challenge6.Api.Controllers
             return Ok(tutor);
         }
 
-        [HttpPut]
-        public async Task<ActionResult<TutorResponse>> UpdateTutorAsync(TutorUpdateCommand command)
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<TutorResponse>> UpdateTutorAsync(int id, [FromForm] TutorUpdateCommand command, IFormFile? profilePicture)
         {
-            var validator = new TutorUpdateCommandValidator();
-            var validationResult = validator.Validate(command);
-            if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
+            try
+            {
+                if (command.Id != id)
+                {
+                    return BadRequest("O ID fornecido não corresponde ao ID no comando.");
+                }
 
-            var tutor = await _mediator.Send(command);
-            if (tutor == null) return NotFound();
-            return Ok(tutor);
+                var validator = new TutorUpdateCommandValidator();
+                var validationResult = validator.Validate(command);
+                if (!validationResult.IsValid) return BadRequest(validationResult.Errors);
+
+                if (profilePicture != null)
+                {
+                    if (profilePicture.Length > 10 * 1024 * 1024) // Verifica se o tamanho do arquivo é maior que 10MB
+                    {
+                        return BadRequest("O tamanho máximo do arquivo é de 10MB.");
+                    }
+                    
+                    var pathFile = await FileStorageService.SaveFileAsync(profilePicture.OpenReadStream(), Folders.PROFILE_PICTURES, profilePicture.FileName);
+                    command.ProfilePicture = pathFile;
+                }
+
+                var tutor = await _mediator.Send(command);
+                if (tutor == null) return NotFound();
+                return Ok(tutor);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Ocorreu um erro ao atualizar o Tutor: {ex.Message}");
+            }
+
         }
     }
 }

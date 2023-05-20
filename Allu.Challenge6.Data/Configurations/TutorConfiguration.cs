@@ -9,6 +9,10 @@ namespace Allu.Challenge6.Data.Configurations
         public void Configure(EntityTypeBuilder<Tutor> builder)
         {
             builder.HasKey(t => t.Id);
+            builder.Property(p => p.ProfilePicture).IsRequired(false);
+            builder.Property(p => p.Telefone).IsRequired(false);
+            builder.Property(p => p.Cidade).IsRequired(false);
+            builder.Property(p => p.Sobre).IsRequired(false);
         }
     }
 }

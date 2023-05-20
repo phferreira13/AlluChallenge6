@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Allu.Challege6.Shared\Allu.Challege6.Shared.csproj" />
     <ProjectReference Include="..\Allu.Challenge6.Business\Allu.Challenge6.Business.csproj" />
     <ProjectReference Include="..\Allu.Challenge6.Entity\Allu.Challenge6.Entity.csproj" />
   </ItemGroup>
