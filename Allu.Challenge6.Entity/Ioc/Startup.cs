@@ -2,10 +2,10 @@
 
 using Allu.Challenge6.Configuration;
 using Allu.Challenge6.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Microsoft.EntityFrameworkCore;
 
 namespace Allu.Challenge6.Entity.Ioc
 {
